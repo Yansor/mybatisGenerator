@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efivestar.wxgw.mapper.cms.ContentMapper">
+  <resultMap id="BaseResultMap" type="com.efivestar.wxgw.domain.cms.Content">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="contentType" jdbcType="VARCHAR" property="contenttype" />
+    <result column="publishTime" jdbcType="TIMESTAMP" property="publishtime" />
+    <result column="thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+    <result column="channelCode" jdbcType="VARCHAR" property="channelcode" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="navigatorId" jdbcType="INTEGER" property="navigatorid" />
+    <result column="navigatorModuleId" jdbcType="INTEGER" property="navigatormoduleid" />
+    <result column="newsContent" jdbcType="VARCHAR" property="newscontent" />
+    <result column="deleteFlag" jdbcType="BIT" property="deleteflag" />
+    <result column="mediaUrl" jdbcType="VARCHAR" property="mediaurl" />
+    <result column="mediaDescription" jdbcType="VARCHAR" property="mediadescription" />
+    <result column="top" jdbcType="BIT" property="top" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, author, contentType, publishTime, thumbnail, channelCode, summary, navigatorId, 
+    navigatorModuleId, newsContent, deleteFlag, mediaUrl, mediaDescription, top
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_cms_content
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_cms_content
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.efivestar.wxgw.domain.cms.Content">
+    insert into t_cms_content (id, title, author, 
+      contentType, publishTime, thumbnail, 
+      channelCode, summary, navigatorId, 
+      navigatorModuleId, newsContent, deleteFlag, 
+      mediaUrl, mediaDescription, top
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{contenttype,jdbcType=VARCHAR}, #{publishtime,jdbcType=TIMESTAMP}, #{thumbnail,jdbcType=VARCHAR}, 
+      #{channelcode,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{navigatorid,jdbcType=INTEGER}, 
+      #{navigatormoduleid,jdbcType=INTEGER}, #{newscontent,jdbcType=VARCHAR}, #{deleteflag,jdbcType=BIT}, 
+      #{mediaurl,jdbcType=VARCHAR}, #{mediadescription,jdbcType=VARCHAR}, #{top,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.efivestar.wxgw.domain.cms.Content">
+    insert into t_cms_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="contenttype != null">
+        contentType,
+      </if>
+      <if test="publishtime != null">
+        publishTime,
+      </if>
+      <if test="thumbnail != null">
+        thumbnail,
+      </if>
+      <if test="channelcode != null">
+        channelCode,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="navigatorid != null">
+        navigatorId,
+      </if>
+      <if test="navigatormoduleid != null">
+        navigatorModuleId,
+      </if>
+      <if test="newscontent != null">
+        newsContent,
+      </if>
+      <if test="deleteflag != null">
+        deleteFlag,
+      </if>
+      <if test="mediaurl != null">
+        mediaUrl,
+      </if>
+      <if test="mediadescription != null">
+        mediaDescription,
+      </if>
+      <if test="top != null">
+        top,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="contenttype != null">
+        #{contenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null">
+        #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thumbnail != null">
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="channelcode != null">
+        #{channelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="navigatorid != null">
+        #{navigatorid,jdbcType=INTEGER},
+      </if>
+      <if test="navigatormoduleid != null">
+        #{navigatormoduleid,jdbcType=INTEGER},
+      </if>
+      <if test="newscontent != null">
+        #{newscontent,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteflag != null">
+        #{deleteflag,jdbcType=BIT},
+      </if>
+      <if test="mediaurl != null">
+        #{mediaurl,jdbcType=VARCHAR},
+      </if>
+      <if test="mediadescription != null">
+        #{mediadescription,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null">
+        #{top,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efivestar.wxgw.domain.cms.Content">
+    update t_cms_content
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="contenttype != null">
+        contentType = #{contenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null">
+        publishTime = #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thumbnail != null">
+        thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="channelcode != null">
+        channelCode = #{channelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="navigatorid != null">
+        navigatorId = #{navigatorid,jdbcType=INTEGER},
+      </if>
+      <if test="navigatormoduleid != null">
+        navigatorModuleId = #{navigatormoduleid,jdbcType=INTEGER},
+      </if>
+      <if test="newscontent != null">
+        newsContent = #{newscontent,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteflag != null">
+        deleteFlag = #{deleteflag,jdbcType=BIT},
+      </if>
+      <if test="mediaurl != null">
+        mediaUrl = #{mediaurl,jdbcType=VARCHAR},
+      </if>
+      <if test="mediadescription != null">
+        mediaDescription = #{mediadescription,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null">
+        top = #{top,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efivestar.wxgw.domain.cms.Content">
+    update t_cms_content
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      contentType = #{contenttype,jdbcType=VARCHAR},
+      publishTime = #{publishtime,jdbcType=TIMESTAMP},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      channelCode = #{channelcode,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      navigatorId = #{navigatorid,jdbcType=INTEGER},
+      navigatorModuleId = #{navigatormoduleid,jdbcType=INTEGER},
+      newsContent = #{newscontent,jdbcType=VARCHAR},
+      deleteFlag = #{deleteflag,jdbcType=BIT},
+      mediaUrl = #{mediaurl,jdbcType=VARCHAR},
+      mediaDescription = #{mediadescription,jdbcType=VARCHAR},
+      top = #{top,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
